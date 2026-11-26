@@ -1,0 +1,44 @@
+[project]
+name = "medikeep-mcp"
+version = "0.1.0"
+description = "Model Context Protocol (MCP) server for MediKeep, the self-hosted personal medical records manager"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+authors = [{ name = "chrispyduck" }]
+keywords = ["mcp", "medikeep", "health", "medical-records", "llm", "claude"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "mcp>=2.3,<3",
+    "httpx>=0.27",
+    "pyotp>=2.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.24", "respx>=0.21"]
+
+[project.scripts]
+medikeep-mcp = "medikeep_mcp.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/chrispyduck/medikeep-mcp"
+MediKeep = "https://github.com/afairgiant/MediKeep"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/medikeep_mcp"]
+
+# Ship the Claude skills inside the package so the server can expose them as
+# MCP prompts/resources to any client, not just Claude Code.
+[tool.hatch.build.targets.wheel.force-include]
+"skills" = "medikeep_mcp/skills"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

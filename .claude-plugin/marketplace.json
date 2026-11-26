@@ -1,0 +1,14 @@
+{
+  "name": "medikeep-mcp",
+  "description": "MediKeep MCP server and skills for working with self-hosted medical records",
+  "owner": {
+    "name": "chrispyduck"
+  },
+  "plugins": [
+    {
+      "name": "medikeep",
+      "source": "./",
+      "description": "MediKeep MCP server plus usage skills for working with personal medical records."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "medikeep",
+  "version": "0.1.0",
+  "description": "MediKeep MCP server (every MediKeep API operation) plus skills for health summaries, lab trends, medication review, record entry, symptoms/vitals, family history, reports and admin.",
+  "author": { "name": "chrispyduck" },
+  "homepage": "https://github.com/chrispyduck/medikeep-mcp",
+  "repository": "https://github.com/chrispyduck/medikeep-mcp",
+  "license": "Apache-2.0",
+  "keywords": ["medikeep", "health", "medical-records", "mcp"],
+  "mcpServers": {
+    "medikeep": {
+      "command": "uvx",
+      "args": ["--from", "${CLAUDE_PLUGIN_ROOT}", "medikeep-mcp"],
+      "env": {
+        "MEDIKEEP_URL": "${MEDIKEEP_URL:-http://localhost:8005}",
+        "MEDIKEEP_USERNAME": "${MEDIKEEP_USERNAME:-}",
+        "MEDIKEEP_PASSWORD": "${MEDIKEEP_PASSWORD:-}",
+        "MEDIKEEP_TOTP_SECRET": "${MEDIKEEP_TOTP_SECRET:-}",
+        "MEDIKEEP_TOKEN": "${MEDIKEEP_TOKEN:-}",
+        "MEDIKEEP_TOOL_MODE": "${MEDIKEEP_TOOL_MODE:-compact}",
+        "MEDIKEEP_READ_ONLY": "${MEDIKEEP_READ_ONLY:-false}",
+        "MEDIKEEP_VERIFY_SSL": "${MEDIKEEP_VERIFY_SSL:-true}"
+      }
+    }
+  }
+}
